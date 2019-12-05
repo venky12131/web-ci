@@ -15,7 +15,7 @@ public class WebCiApplication {
 
 	@RequestMapping("/")
 	public String home() {
-		return "This is a test";
+		return "This is a test v2";
 	}
 
 }
