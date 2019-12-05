@@ -3,15 +3,27 @@ pipeline {
 
   stages {
       stage('Package webapp') {
-        sh './mvnw clean package -DskipTests'
+        steps {
+          script {
+            sh './mvnw clean package -DskipTests'
+          }
+        }
       }
 
       stage('Run tests') {
-        sh './mvnw test'
+        steps {
+          script {
+            sh './mvnw test'
+          }
+        }
       }
 
       stage('Build Docker image') {
-          sh 'docker build . -t xpadro/web-ci'
+        steps {
+          script {
+            sh 'docker build . -t xpadro/web-ci'
+          }
+        }
       }
 
       stage('Second stage') {
