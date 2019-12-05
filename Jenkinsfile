@@ -2,17 +2,22 @@ pipeline {
   agent any
 
   stages {
-      stage('First stage') {
-          steps {
-              script {
-                  echo 'First stage'
-              }
-          }
+      stage('Package webapp') {
+        sh './mvnw clean package -DskipTests'
       }
+
+      stage('Run tests') {
+        sh './mvnw test'
+      }
+
+      stage('Build Docker image') {
+          sh 'docker build . -t xpadro/web-ci'
+      }
+
       stage('Second stage') {
           steps {
               script {
-                  echo 'Second stage'
+                  echo 'This is the second stage'
               }
           }
       }
