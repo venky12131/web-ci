@@ -10,7 +10,7 @@ class WebCiApplicationTests {
 
 	@Test
 	void contextLoads() {
-		fail();
+		
 	}
 
 }
