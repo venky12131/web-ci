@@ -18,6 +18,10 @@ pipeline {
         }
       }
 
+      stage('Coverage stage') {
+        cobertura coberturaReportFile: '**/coverage.xml'
+      }
+
       stage('Build Docker image') {
         steps {
           script {
@@ -26,12 +30,5 @@ pipeline {
         }
       }
 
-      stage('Second stage') {
-          steps {
-              script {
-                  echo 'This is the second stage'
-              }
-          }
-      }
   }
 }
