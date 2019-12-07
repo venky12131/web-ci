@@ -9,13 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WebCiApplication {
 
+	private final HelloService helloService;
+
+	public WebCiApplication(HelloService helloService) {
+		this.helloService = helloService;
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(WebCiApplication.class, args);
 	}
 
 	@RequestMapping("/")
 	public String home() {
-		return "This is a test v2";
+		return helloService.hello();
 	}
 
 }
