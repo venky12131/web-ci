@@ -19,7 +19,9 @@ pipeline {
       }
 
       stage('Coverage stage') {
-        cobertura coberturaReportFile: '**/coverage.xml'
+        steps {
+          cobertura coberturaReportFile: '**/coverage.xml'
+        }
       }
 
       stage('Build Docker image') {
