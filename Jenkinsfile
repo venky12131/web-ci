@@ -1,7 +1,6 @@
 pipeline {
   environment {
-    registry = "https://hub.docker.com/repository/docker/xpadro/web-ci"
-    docker_credentials = "dockerhub"
+    registry_credentials = "dockerhub"
   }
 
   agent any
@@ -32,7 +31,17 @@ pipeline {
       stage('Build Docker image') {
         steps {
           script {
-            def customImage = docker.build("xpadro/web-ci:${env.BUILD_ID}")
+            def dockerImage = docker.build("xpadro/web-ci:${env.BUILD_ID}")
+          }
+        }
+      }
+
+      stage('Push image') {
+        steps{
+          script {
+            docker.withRegistry( '', registry_credentials ) {
+              dockerImage.push()
+            }
           }
         }
       }
