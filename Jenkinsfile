@@ -32,7 +32,7 @@ pipeline {
       stage('Build Docker image') {
         steps {
           script {
-            def dockerImage = docker.build("xpadro/web-ci:${env.BUILD_ID}")
+            dockerImage = docker.build("xpadro/web-ci:${env.BUILD_ID}")
           }
         }
       }
