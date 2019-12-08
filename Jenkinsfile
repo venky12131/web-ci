@@ -1,4 +1,9 @@
 pipeline {
+  environment {
+    registry = "https://hub.docker.com/repository/docker/xpadro/web-ci"
+    docker_credentials = "dockerhub"
+  }
+
   agent any
 
   stages {
@@ -27,7 +32,7 @@ pipeline {
       stage('Build Docker image') {
         steps {
           script {
-            sh 'docker build . -t xpadro/web-ci'
+            def customImage = docker.build("xpadro/web-ci:${env.BUILD_ID}")
           }
         }
       }
