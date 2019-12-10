@@ -14,4 +14,6 @@ docker run \
   jenkinsci/blueocean
 ```
 
-[Jenkins installation page][https://jenkins.io/doc/book/installing/]
+[Jenkins installation page]
+
+[Jenkins installation page]: https://jenkins.io/doc/book/installing/
