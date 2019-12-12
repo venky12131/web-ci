@@ -15,13 +15,21 @@ pipeline {
         }
       }
 
-      stage('Run tests') {
+      stage('Run unit tests') {
         steps {
           script {
             sh './mvnw test'
           }
         }
       }
+
+      stage('Run integration tests') {
+	    steps {
+	      script {
+	        sh './mvnw test -Pintegration-tests'
+	      }
+	    }
+	  }
 
       stage('Coverage stage') {
         steps {
