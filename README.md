@@ -17,3 +17,7 @@ docker run \
 [Jenkins installation page]
 
 [Jenkins installation page]: https://jenkins.io/doc/book/installing/
+
+
+The image below is the resulting Jenkins build pipeline based on the execution of the Jenkinsfile
+![jenkins build](https://imgur.com/YF9pDsF)
