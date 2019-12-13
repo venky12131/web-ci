@@ -20,4 +20,4 @@ docker run \
 
 
 The image below is the resulting Jenkins build pipeline based on the execution of the Jenkinsfile
-![jenkins build](https://imgur.com/YF9pDsF)
+![jenkins build](https:/github.com/xpadro/web-ci/tree/master/src/main/resources/images/jenkins_build.png)
