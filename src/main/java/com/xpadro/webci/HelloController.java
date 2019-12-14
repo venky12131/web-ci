@@ -17,4 +17,10 @@ public class HelloController {
     public String home() {
         return helloService.hello();
     }
+
+    @RequestMapping("/slow")
+    public String simulateSlowRequest() throws InterruptedException {
+        Thread.sleep(5_000);
+        return helloService.hello();
+    }
 }
