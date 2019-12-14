@@ -29,4 +29,10 @@ public class WebCiIT {
     public void nonexistingEndpointReturns404() throws Exception {
         mockMvc.perform(get("/unexisting")).andExpect(status().isNotFound());
     }
+
+    @Test
+    public void testSlowEndpoint() throws Exception {
+        MvcResult result = mockMvc.perform(get("/slow")).andExpect(status().isOk()).andReturn();
+        assertThat(result.getResponse().getContentAsString(), equalTo("Hello!"));
+    }
 }
