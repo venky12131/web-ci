@@ -31,29 +31,7 @@ pipeline {
 	    }
 	  }
 
-      stage('Coverage stage') {
-        steps {
-          cobertura coberturaReportFile: '**/coverage.xml'
-        }
-      }
-
-      stage('Build Docker image') {
-        steps {
-          script {
-            dockerImage = docker.build("xpadro/web-ci:${env.BUILD_ID}")
-          }
-        }
-      }
-
-      stage('Push image') {
-        steps{
-          script {
-            docker.withRegistry( '', registry_credentials ) {
-              dockerImage.push()
-            }
-          }
-        }
-      }
+  
 
   }
 }
