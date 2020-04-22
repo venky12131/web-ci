@@ -1,13 +1,13 @@
+pipeline {
+  environment {
+    registry_credentials = "dockerhub"
+    dockerImage = ''
+  }
 
-node {
+  agent any
 
-   stage('init') {
-
-      checkout scm
-
-    }
-
-    stage('Package webapp') {
+  stages {
+      stage('Package webapp') {
         steps {
           script {
             sh './mvnw clean package -DskipTests'
@@ -30,6 +30,30 @@ node {
 	      }
 	    }
 	  }
-   
 
+      stage('Coverage stage') {
+        steps {
+          cobertura coberturaReportFile: '**/coverage.xml'
+        }
+      }
+
+      stage('Build Docker image') {
+        steps {
+          script {
+            dockerImage = docker.build("xpadro/web-ci:${env.BUILD_ID}")
+          }
+        }
+      }
+
+      stage('Push image') {
+        steps{
+          script {
+            docker.withRegistry( '', registry_credentials ) {
+              dockerImage.push()
+            }
+          }
+        }
+      }
+
+  }
 }
